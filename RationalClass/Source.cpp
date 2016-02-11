@@ -36,6 +36,12 @@ Rational operator+(const Rational &, const Rational &);
 Rational operator-(const Rational &, const Rational &);
 Rational operator*(const Rational &, const Rational &);
 Rational operator/(const Rational &, const Rational &);
+bool operator<(const Rational &, const Rational &);
+bool operator<=(const Rational &, const Rational &);
+bool operator>(const Rational &, const Rational &);
+bool operator>=(const Rational &, const Rational &);
+bool operator==(const Rational &, const Rational &);
+bool operator!=(const Rational &, const Rational &);
 
 ostream &operator<<(ostream &os, const Rational &r);
 
@@ -118,6 +124,15 @@ Rational &Rational::operator/=(const Rational &s)
 	return *this;
 }
 
+bool operator<(const Rational &r, const Rational &s)
+{
+	if ((r.numerator() * s.denominator()) < (s.numerator() * r.denominator()))
+		return true;
+	else
+		return false;
+
+}
+
 Rational operator+ (const Rational &r, const Rational &s)
 {
 	Rational t = r;
@@ -145,7 +160,7 @@ Rational operator/(const Rational &r, const Rational &s)
 istream &operator>>(istream &is, Rational &r)
 {
 	char c;
-	is >> r.numerator >> c >> r.denominator;
+	is >> r.num >> c >> r.denom;
 	if (!is || c != '/')
 		throw Rational_Error("Invalid fration");
 	else r.simplify();
@@ -154,7 +169,7 @@ istream &operator>>(istream &is, Rational &r)
 
 ostream &operator<<(ostream &os, const Rational &r)
 {
-	return os << r.numerator() << '/' << r.denominator;
+	return os << r.numerator() << '/' << r.denominator();
 }
 
 int gcd(int x, int y)
