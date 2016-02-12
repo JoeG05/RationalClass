@@ -33,7 +33,9 @@ public:
 };
 
 Rational operator+(const Rational &, const Rational &);
+Rational operator+(const Rational &);
 Rational operator-(const Rational &, const Rational &);
+Rational operator-(const Rational &);
 Rational operator*(const Rational &, const Rational &);
 Rational operator/(const Rational &, const Rational &);
 
@@ -198,10 +200,21 @@ Rational operator+ (const Rational &r, const Rational &s)
 	return t += s;
 }
 
+Rational operator+(const Rational &r)
+{
+	return r;
+}
+
 Rational operator-(const Rational &r, const Rational &s)
 {
 	Rational t = r;
 	return t -= s;
+}
+
+Rational operator-(const Rational &r)
+{
+	Rational t(-1, 1);
+	return t*r;
 }
 
 Rational operator*(const Rational &r, const Rational &s)
