@@ -46,6 +46,8 @@ bool operator>=(const Rational &, const Rational &);
 bool operator==(const Rational &, const Rational &);
 bool operator!=(const Rational &, const Rational &);
 
+bool operator!(const Rational &);
+
 Rational absValue(const Rational &);
 
 ostream &operator<<(ostream &os, const Rational &r);
@@ -174,7 +176,7 @@ bool operator==(const Rational &r, const Rational &s)
 	return false;
 }
 
-bool operator !=(const Rational &r, const Rational &s)
+bool operator!=(const Rational &r, const Rational &s)
 {
 	int left, right;
 	left = r.numerator() * s.denominator();
@@ -184,6 +186,14 @@ bool operator !=(const Rational &r, const Rational &s)
 		return false;
 
 	return true;
+}
+
+bool operator!(const Rational&r)
+{
+	if (r.numerator() == 0)
+		return true;
+
+	return false;
 }
 
 Rational absValue(const Rational &r)
