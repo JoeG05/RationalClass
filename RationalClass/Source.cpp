@@ -195,5 +195,16 @@ int gcd(int x, int y)
 
 int main()
 {
+	Rational r(2, 3);
+	Rational s(3, 4);
+	Rational t(6, 8);
+
+	if (r < s)
+		cout << "True" << endl;
+
+	if (r <= s)
+		cout << "True" << endl;
+
+	system("Pause");
 	return 0;
 }
