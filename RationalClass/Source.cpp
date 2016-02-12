@@ -39,8 +39,8 @@ Rational operator/(const Rational &, const Rational &);
 
 bool operator<(const Rational &, const Rational &);
 bool operator<=(const Rational &, const Rational &);
-//bool operator>(const Rational &, const Rational &);
-//bool operator>=(const Rational &, const Rational &);
+bool operator>(const Rational &, const Rational &);
+bool operator>=(const Rational &, const Rational &);
 //bool operator==(const Rational &, const Rational &);
 //bool operator!=(const Rational &, const Rational &);
 
@@ -142,6 +142,22 @@ bool operator<=(const Rational &r, const Rational &s)
 		return true;
 }
 
+bool operator>(const Rational &r, const Rational &s)
+{
+	if ((r.numerator() * s.denominator()) > (s.numerator() * r.denominator()))
+		return true;
+	else
+		return false;
+}
+
+bool operator>=(const Rational &r, const Rational &s)
+{
+	if ((r.numerator() * s.denominator()) < (s.numerator() * r.denominator()))
+		return false;
+	else
+		return true;
+}
+
 Rational operator+ (const Rational &r, const Rational &s)
 {
 	Rational t = r;
@@ -203,6 +219,12 @@ int main()
 		cout << "True" << endl;
 
 	if (r <= s)
+		cout << "True" << endl;
+
+	if (s > r)
+		cout << "True" << endl;
+
+	if (s >= t)
 		cout << "True" << endl;
 
 	system("Pause");
