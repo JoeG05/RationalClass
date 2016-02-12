@@ -36,12 +36,13 @@ Rational operator+(const Rational &, const Rational &);
 Rational operator-(const Rational &, const Rational &);
 Rational operator*(const Rational &, const Rational &);
 Rational operator/(const Rational &, const Rational &);
+
 bool operator<(const Rational &, const Rational &);
 bool operator<=(const Rational &, const Rational &);
-bool operator>(const Rational &, const Rational &);
-bool operator>=(const Rational &, const Rational &);
-bool operator==(const Rational &, const Rational &);
-bool operator!=(const Rational &, const Rational &);
+//bool operator>(const Rational &, const Rational &);
+//bool operator>=(const Rational &, const Rational &);
+//bool operator==(const Rational &, const Rational &);
+//bool operator!=(const Rational &, const Rational &);
 
 ostream &operator<<(ostream &os, const Rational &r);
 
@@ -70,7 +71,7 @@ Rational::Rational(const string &str)
 {
 	//Assumes string in form "num / denom"
 	static const string validchar = "-0123456789";
-	size_t index;
+	size_t index = 0;
 
 	if ((num == 0 && str.find_first_of(validchar) != 0)
 		|| (index == string::npos)
@@ -133,6 +134,14 @@ bool operator<(const Rational &r, const Rational &s)
 
 }
 
+bool operator<=(const Rational &r, const Rational &s)
+{
+	if ((r.numerator() * s.denominator()) > (s.numerator() * r.denominator()))
+		return false;
+	else
+		return true;
+}
+
 Rational operator+ (const Rational &r, const Rational &s)
 {
 	Rational t = r;
@@ -182,4 +191,9 @@ int gcd(int x, int y)
 		y = r;
 	}
 	return x;
+}
+
+int main()
+{
+	return 0;
 }
