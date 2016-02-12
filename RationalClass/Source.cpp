@@ -41,8 +41,8 @@ bool operator<(const Rational &, const Rational &);
 bool operator<=(const Rational &, const Rational &);
 bool operator>(const Rational &, const Rational &);
 bool operator>=(const Rational &, const Rational &);
-//bool operator==(const Rational &, const Rational &);
-//bool operator!=(const Rational &, const Rational &);
+bool operator==(const Rational &, const Rational &);
+bool operator!=(const Rational &, const Rational &);
 
 ostream &operator<<(ostream &os, const Rational &r);
 
@@ -158,6 +158,29 @@ bool operator>=(const Rational &r, const Rational &s)
 		return true;
 }
 
+bool operator==(const Rational &r, const Rational &s)
+{
+	int left, right;
+	left = r.numerator() * s.denominator();
+	right = s.numerator() * r.denominator();
+
+	if (left == right)
+		return true;
+
+	return false;
+}
+
+bool operator !=(const Rational &r, const Rational &s)
+{
+	int left, right;
+	left = r.numerator() * s.denominator();
+	right = s.numerator() * r.denominator();
+
+	if (left == right)
+		return false;
+
+	return true;
+}
 Rational operator+ (const Rational &r, const Rational &s)
 {
 	Rational t = r;
@@ -226,6 +249,12 @@ int main()
 
 	if (s >= t)
 		cout << "True" << endl;
+
+	if (s == t)
+		cout << "s = t" << endl;
+
+	if (s != r)
+		cout << "true" << endl;
 
 	system("Pause");
 	return 0;
