@@ -44,6 +44,8 @@ bool operator>=(const Rational &, const Rational &);
 bool operator==(const Rational &, const Rational &);
 bool operator!=(const Rational &, const Rational &);
 
+Rational absValue(const Rational &);
+
 ostream &operator<<(ostream &os, const Rational &r);
 
 static int gcd(int x, int y);
@@ -181,6 +183,15 @@ bool operator !=(const Rational &r, const Rational &s)
 
 	return true;
 }
+
+Rational absValue(const Rational &r)
+{
+	Rational s(-1, 1);
+	if (r.numerator() < 0)
+		return s * r;
+
+	return r;
+}
 Rational operator+ (const Rational &r, const Rational &s)
 {
 	Rational t = r;
@@ -237,6 +248,7 @@ int main()
 	Rational r(2, 3);
 	Rational s(3, 4);
 	Rational t(6, 8);
+	Rational u(-4, 7);
 
 	if (r < s)
 		cout << "True" << endl;
@@ -255,6 +267,9 @@ int main()
 
 	if (s != r)
 		cout << "true" << endl;
+
+	Rational q = absValue(u);
+	cout << q << endl;
 
 	system("Pause");
 	return 0;
